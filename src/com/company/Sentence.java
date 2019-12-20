@@ -23,13 +23,13 @@ public class Sentence {
      */
     public int findNthTime(String str, int n) {
         int a=0;
-        int counter=0;
+        int counter = 0;
         int b=0;
-            while(counter<n) {
-                a = currSent.indexOf(str, b);
-                b += a+1;
-                counter++;
-            }
+        while (counter<n){
+            a = currSent.indexOf(str, b);
+            b += a+1;
+            counter++;
+        }
         return a;
     }
 
@@ -40,8 +40,11 @@ public class Sentence {
      */
     public void replaceNthTime(String str, int n, String repl) {
         int k = findNthTime(str, n);
-        String s2 = currSent.substring(0,k) + repl + currSent.substring(k+2);
-        currSent = s2;
+        if (k!=-1) {
+            String a = currSent.substring(0, k);
+            String b = currSent.substring(k + 2);
+            currSent = a + repl + b;
+        }
     }
 
     /** Returns the index of the last occurrence of str in the current sentence:
@@ -49,43 +52,52 @@ public class Sentence {
      * Precondition:  str.length() > 0
      * Postcondition: the current sentence is not modified.
      */
-//    public int findLastTime(String str) {
-//        /* part c - you must call findNthTime here */
-//    }
+    public int findLastTime(String str) {
+        int k;
+        int a=-1;
+        for (int i=1; i<currSent.length(); i++){
+            k = findNthTime(str,i);
+            if (k==-1)
+            {break;}
+            else
+            {a=k;}
+        }
+        return a;
+    }
 
     public static void main(String[] args) {
         Sentence sentence1 = new Sentence("A cat ate late.");
         System.out.println(sentence1.findNthTime("at",1));
         sentence1.replaceNthTime("at", 1, "rane");
         System.out.println(sentence1);
-//
+
         Sentence sentence2 = new Sentence("A cat ate late.");
         System.out.println(sentence2.findNthTime("at",6));
-//        sentence2.replaceNthTime("at", 6, "xx");
-//        System.out.println(sentence2);
-//
+        sentence2.replaceNthTime("at", 6, "xx");
+        System.out.println(sentence2);
+
         Sentence sentence7 = new Sentence("A cat ate late.");
         System.out.println(sentence7.findNthTime("at",3));
-//        sentence7.replaceNthTime("at", 3, "xx");
-//        System.out.println(sentence7);
-//
+        sentence7.replaceNthTime("at", 3, "xx");
+        System.out.println(sentence7);
+
         Sentence sentence3 = new Sentence("A cat ate late.");
         System.out.println(sentence3.findNthTime("bat",2));
-//        sentence3.replaceNthTime("bat", 2, "xx");
-//        System.out.println(sentence3);
-//
-//        Sentence sentence4 = new Sentence("aaaa");
-//        sentence4.replaceNthTime("aa", 1, "xx");
-//        System.out.println(sentence4);
-//
-//        Sentence sentence5 = new Sentence("aaaa");
-//        sentence5.replaceNthTime("aa", 2, "bbb");
-//        System.out.println(sentence5);
-//
-//        Sentence sentence6 = new Sentence("A cat ate late.");
-//        System.out.println(sentence6.findLastTime("at"));
-//        System.out.println(sentence6.findLastTime("cat"));
-//        System.out.println(sentence6.findLastTime("bat"));
+        sentence3.replaceNthTime("bat", 2, "xx");
+        System.out.println(sentence3);
+
+        Sentence sentence4 = new Sentence("aaaa");
+        sentence4.replaceNthTime("aa", 1, "xx");
+        System.out.println(sentence4);
+
+        Sentence sentence5 = new Sentence("aaaa");
+        sentence5.replaceNthTime("aa", 2, "bbb");
+        System.out.println(sentence5);
+
+        Sentence sentence6 = new Sentence("A cat ate late.");
+        System.out.println(sentence6.findLastTime("at"));
+        System.out.println(sentence6.findLastTime("cat"));
+        System.out.println(sentence6.findLastTime("bat"));
     }
 
 }
