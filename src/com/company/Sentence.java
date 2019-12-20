@@ -1,3 +1,5 @@
+// Ankit Amonkar
+// 3B Computer Science
 package com.company;
 
 public class Sentence {
@@ -13,8 +15,6 @@ public class Sentence {
     public String toString() {
         return currSent;
     }
-
-
 
     /** Returns the index of the nth occurrence of str in the current sencence;
      * returns -1 of the nth occurrence does not exist.
@@ -101,3 +101,19 @@ public class Sentence {
     }
 
 }
+
+/* Results:
+    3
+    A crane ate late.
+    -1
+    A cat ate late.
+    11
+    A cat ate lxxe.
+    -1
+    A cat ate late.
+    xxaa
+    abbba
+    11
+    2
+    -1
+ */
